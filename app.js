@@ -24,13 +24,10 @@ app.enable('trust proxy');
 
 app.use(
     cors({
-      origin: [process.env.REACT_APP_URI]  // <== URL of our future React app
+      origin: [process.env.REACT_APP_URI] 
     })
   );
 
-// app.use(
-//     cors()
-//   );
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
