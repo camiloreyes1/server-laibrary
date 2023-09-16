@@ -5,7 +5,7 @@ const axios = require('axios');
 router.post('/search', (req, res, next) => {
 
   console.log("REQ.BODY ===>", req.body)
-  const { occupation, question } = req.body;
+  const { job, question } = req.body;
 
   const options = {
     method: 'POST',
@@ -17,7 +17,7 @@ router.post('/search', (req, res, next) => {
     },
     data: [
       {
-        content: `I am ${occupation}. ${question}?`,
+        content: `I am ${job}. ${question}?`,
         role: 'user'
       }
     ]
