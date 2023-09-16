@@ -10,7 +10,7 @@ const User = require('../models/User');
 const saltRounds = 10;
 
 router.post("/signup", (req, res, next) => {
-    const { fullName, email, password } = req.body;
+    const { fullName, email, password, occupation } = req.body;
 
     if (email === "" || password === "") {
         res.status(400).json({ message: "Provide email, password and name" });
@@ -45,9 +45,9 @@ router.post("/signup", (req, res, next) => {
             User.create({ email, password: hashedPassword, fullName })
                 .then((createdUser) => {
 
-                    const { fullName, email, _id } = createdUser;
+                    const { fullName, email,  _id } = createdUser;
 
-                    const payload = { fullName, email, _id };
+                    const payload = { fullName, email,  _id };
 
                     const authToken = jwt.sign(payload, process.env.SECRET, {
                         algorithm: "HS256",
