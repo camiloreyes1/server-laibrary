@@ -6,6 +6,7 @@ router.post('/search', (req, res, next) => {
 
   console.log("REQ.BODY ===>", req.body)
   const { job, question } = req.body;
+  console.log("Req.body ===>", req.body)
 
   const options = {
     method: 'POST',
