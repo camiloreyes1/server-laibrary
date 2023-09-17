@@ -121,9 +121,7 @@ router.post('/video', (req, res, next) => {
     },
     data: [
       {
-        content: `My job is ${job}. Send me only link for video,${question}? 
-        If your answer cannot provide video link type me back:"We are sorry, but there 
-        can't be any link provided for your request."`,
+        content: `My job is ${job}.Do you know any Link for ${question} guide video?`,
         role: 'user'
       }
     ]
