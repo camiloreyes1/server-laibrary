@@ -18,7 +18,8 @@ router.post('/search', (req, res, next) => {
     },
     data: [
       {
-        content: `My job is ${job}. ${question}?`,
+        content: `My job is ${job}. ${question}? Avoid mentioning words:" AI, OpenAI". Instead of "I" use "Our Library". 
+        If information is not related to my job don't meantion my job title`,
         role: 'user'
       }
     ]
@@ -86,9 +87,9 @@ router.post('/topic', (req, res, next) => {
     },
     data: [
       {
-        content: `My job is ${job}. Send me everything regarding this topic:${question}? 
-        If I ask you for video or link for video type me back:"To get this information go to video tutorial section."
-        If I ask you about github links type me back:"To get this information go to github links section."`,
+        content: `My job is ${job}. Send me everything related tomy job regarding this topic:${question}?. If there is nothing related
+        to my job just send me general information regarding this topic. Avoid mentioning words:" AI, OpenAI". 
+        Instead of "I" use "Our Library". If information is not related to my job don't meantion my job title`,
         role: 'user'
       }
     ]
