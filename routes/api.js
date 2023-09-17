@@ -106,37 +106,34 @@ router.post('/topic', (req, res, next) => {
     });
 });
 
-router.post('/video', (req, res, next) => {
+router.post('/video', async (req, res, next) => {
 
   console.log("REQ.BODY ===>", req.body)
   const { job, question } = req.body;
   console.log("Req.body ===>", req.body)
 
   const options = {
-    method: 'POST',
-    url: 'https://chatgpt-api8.p.rapidapi.com/',
-    headers: {
-      'content-type': 'application/json',
-      'X-RapidAPI-Key': 'c653db3d66msh51a730c880982cfp1b9ff5jsn7f8a1b1556f8',
-      'X-RapidAPI-Host': 'chatgpt-api8.p.rapidapi.com'
+    method: 'GET',
+    url: 'https://youtube-v31.p.rapidapi.com/search',
+    params: {
+      q: `${question}`,
+      part: 'snippet,id',
+      regionCode: 'US',
+      maxResults: '50'
     },
-    data: [
-      {
-        content: `My job is ${job}.Do you know any Link for ${question} guide video?`,
-        role: 'user'
-      }
-    ]
+    headers: {
+      'X-RapidAPI-Key': 'c653db3d66msh51a730c880982cfp1b9ff5jsn7f8a1b1556f8',
+      'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com'
+    }
   };
-
-  axios.request(options)
-    .then((response) => {
-      console.log('Answer ===>', response.data);
-      res.json(response.data);
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).json({ error: 'An error occurred' });
-    });
+  
+  try {
+    const response = await axios.request(options);
+    console.log("Response ===>", response.data.items)
+    res.json(response.data.items);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 module.exports = router;

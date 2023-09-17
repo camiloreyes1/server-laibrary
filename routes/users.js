@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.post('/profile-edit/:id', isAuthenticated, (req,res,next) => {
+router.post('/edit/:userId', isAuthenticated, (req,res,next) => {
 
   const { occupation } = req.body
 
